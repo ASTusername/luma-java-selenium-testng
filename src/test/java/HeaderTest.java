@@ -20,18 +20,6 @@ public class HeaderTest extends BaseTest {
         WebElement topMenuWhatsNew = driver.findElement(By.id("ui-id-3"));
         String value = topMenuWhatsNew.getText();
 
-//        WebElement textBox = driver.findElement(By.name("my-text"));
-//        textBox.sendKeys("Selenium");
-//
-//        WebElement textArea = driver.findElement(By.name("my-textarea"));
-//        textArea.sendKeys("Alex!");
-//
-//        WebElement submitButton = driver.findElement(By.className("btn"));
-//        submitButton.click();
-//
-//        WebElement message = driver.findElement(By.id("message"));
-//        String value = message.getText();
-
         Assert.assertEquals(value, "What's New");
     }
 }
