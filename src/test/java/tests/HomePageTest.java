@@ -16,7 +16,7 @@ public class HomePageTest extends BaseTest {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
-        driver.get("BASE_URL");
+        driver.get(BASE_URL);
         String title = driver.getTitle();
 
         Assert.assertEquals(title, "Home Page");
@@ -27,7 +27,7 @@ public class HomePageTest extends BaseTest {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
-        driver.get("BASE_URL");
+        driver.get(BASE_URL);
 
         WebElement logo = driver.findElement(By.cssSelector(".logo"));
         Assert.assertTrue(logo.isDisplayed(), "Logo is not displayed");
@@ -44,7 +44,7 @@ public class HomePageTest extends BaseTest {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
-        driver.get("BASE_URL");
+        driver.get(BASE_URL);
 
         WebElement topMenuWhatsNew = driver.findElement(By.id("ui-id-3"));
         topMenuWhatsNew.click();
