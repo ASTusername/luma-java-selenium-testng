@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 public abstract class BaseTest {
 
     private WebDriver driver;
+    protected static final String BASE_URL = "https://magento.softwaretestingboard.com/";
 
     @BeforeMethod
     protected void beforeMethod(Method method) {
