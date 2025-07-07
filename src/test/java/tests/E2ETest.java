@@ -21,7 +21,7 @@ public class E2ETest extends BaseTest {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(5000));
 
-        driver.get("https://magento.softwaretestingboard.com/");
+        driver.get("BASE_URL");
 
         WebElement topMenuMen = driver.findElement(By.id("ui-id-5"));
         topMenuMen.click();

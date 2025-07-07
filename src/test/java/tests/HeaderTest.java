@@ -24,7 +24,7 @@ public class HeaderTest extends BaseTest {
         WebDriver driver = getDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
-        driver.get("https://magento.softwaretestingboard.com/");
+        driver.get(BASE_URL);
 
         WebElement topMenuWhatsNew = driver.findElement(By.id("ui-id-3"));
         String value = topMenuWhatsNew.getText();
