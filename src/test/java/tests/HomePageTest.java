@@ -9,6 +9,8 @@ import runner.BaseTest;
 
 import java.time.Duration;
 
+import model.HomePage;
+
 public class HomePageTest extends BaseTest {
 
     @Test
@@ -17,8 +19,10 @@ public class HomePageTest extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
         driver.get(BASE_URL);
+        HomePage homePage = new HomePage(driver);
         String title = driver.getTitle();
 
+        Assert.assertTrue(homePage.isLogoDisplayed(), "Logo is not displayed");
         Assert.assertEquals(title, "Home Page");
     }
 
@@ -45,11 +49,9 @@ public class HomePageTest extends BaseTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(500));
 
         driver.get(BASE_URL);
+        HomePage homePage = new HomePage(driver);
 
-        WebElement topMenuWhatsNew = driver.findElement(By.id("ui-id-3"));
-        topMenuWhatsNew.click();
-
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(currentUrl.contains("what-is-new"), "Navigation to 'What's New' failed");
+        homePage.clickWhatsNewMenu();
+        Assert.assertTrue(driver.getCurrentUrl().contains("what-is-new"), "Navigation to 'What's New' failed");
     }
 }
