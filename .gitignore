@@ -1,16 +1,15 @@
- target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
+HELP.md
+build
+!**/src/main/**
 
-.idea/*
-
+### IntelliJ IDEA ###
+.idea
 *.iws
 *.iml
 *.ipr
 
-local.properties
-/.allure/
-/log/
+### Gradle ###
+.gradle
 
-local.properties
+#### Logs ###
+*.log

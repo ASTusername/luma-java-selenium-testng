@@ -1,27 +1,22 @@
 package runner;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-
-import java.lang.reflect.Method;
+import com.codeborne.selenide.Configuration;
+import helpers.Attach;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
 
 public abstract class BaseTest {
 
-    private WebDriver driver;
-
-    @BeforeMethod
-    protected void beforeMethod(Method method) {
-        driver = new ChromeDriver();
+    @BeforeAll
+    static void beforeAll() {
+        Configuration.browserSize = "1920x1080";
+        Configuration.baseUrl = "https://magento.softwaretestingboard.com/";
+        Configuration.pageLoadStrategy = "eager";
     }
 
-    @AfterMethod
-    protected void afterMethod(Method method) {
-        driver.quit();
-    }
-
-    protected WebDriver getDriver() {
-        return driver;
+    @AfterEach
+    void addAttachments() {
+        Attach.screenshotAs("Last Screen");
+        Attach.pageSource();
     }
 }
