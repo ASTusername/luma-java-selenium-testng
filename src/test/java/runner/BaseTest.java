@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.UUID;
 
 public abstract class BaseTest {
     private static Path userDataDir;  // НЕ final, чтобы присвоить в beforeAll()
@@ -29,7 +30,16 @@ public abstract class BaseTest {
         );
 
         // Инициализируем поле с уникальной папкой
-        userDataDir = Path.of(System.getProperty("java.io.tmpdir") + "/chrome-profile-" + System.currentTimeMillis());
+        userDataDir = Path.of(System.getProperty("java.io.tmpdir") + "/chrome-profile-" + UUID.randomUUID());
+
+        if (Files.exists(userDataDir)) {
+            try {
+                deleteDirectoryRecursively(userDataDir);
+            } catch (IOException e) {
+                System.err.println("Failed to clean up before tests: " + userDataDir);
+                e.printStackTrace();
+            }
+        }
 
         options.addArguments("--user-data-dir=" + userDataDir.toString());
 
