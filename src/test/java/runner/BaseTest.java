@@ -12,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public abstract class BaseTest {
-    private static final Path userDataDir = Path.of("/tmp/chrome-profile-" + System.currentTimeMillis());
+    private static Path userDataDir;  // НЕ final, чтобы присвоить в beforeAll()
 
     @BeforeAll
     static void beforeAll() {
@@ -22,21 +22,19 @@ public abstract class BaseTest {
 
         ChromeOptions options = new ChromeOptions();
 
-        // Добавляем уже имеющиеся аргументы (если нужны)
         options.addArguments(
                 "--proxy-bypass-list=<-loopback>",
                 "--disable-dev-shm-usage",
                 "--window-size=1920,1080"
         );
 
-        // Добавляем уникальный user-data-dir для каждого запуска
-        String userDataDir = System.getProperty("java.io.tmpdir") + "/chrome-profile-" + System.currentTimeMillis();
-        options.addArguments("--user-data-dir=" + userDataDir);
+        // Инициализируем поле с уникальной папкой
+        userDataDir = Path.of(System.getProperty("java.io.tmpdir") + "/chrome-profile-" + System.currentTimeMillis());
 
-        // Отключаем автоматизацию (если требуется)
+        options.addArguments("--user-data-dir=" + userDataDir.toString());
+
         options.setExperimentalOption("excludeSwitches", new String[]{"enable-automation", "load-extension"});
 
-        // Передаем опции в Selenide
         Configuration.browserCapabilities = options;
     }
 
