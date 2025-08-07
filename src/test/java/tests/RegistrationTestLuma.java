@@ -22,8 +22,8 @@ public class RegistrationTestLuma extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void successfulRegistrationTest() {
         registerPage.openPage()
-                .setFirstName(testData.firstName)
                 .acceptCookies()
+                .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setEmail(testData.email)
                 .setPassword(testData.password)
@@ -38,6 +38,7 @@ public class RegistrationTestLuma extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     public void registrationEmptyFieldsTest() {
         registerPage.openPage()
+                .acceptCookies()
                 .setFirstName("")
                 .setLastName("")
                 .setEmail("")
@@ -55,6 +56,7 @@ public class RegistrationTestLuma extends BaseTest {
         String invalidPassword = "123"; // слишком короткий пароль
 
         registerPage.openPage()
+                .acceptCookies()
                 .setFirstName(testData.firstName)
                 .setLastName(testData.lastName)
                 .setEmail("testuser" + System.currentTimeMillis() + "@mail.ru")
