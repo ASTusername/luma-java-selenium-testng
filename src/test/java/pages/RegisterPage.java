@@ -3,6 +3,8 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.*;
 
 
@@ -59,4 +61,12 @@ public class RegisterPage {
                 .shouldBe(Condition.visible);
     }
 
+    public RegisterPage acceptCookies() {
+        // Попробуй сначала по тексту кнопки
+        $x("//button[contains(., 'Consent')]").shouldBe(visible).click();
+
+        // Если не сработает — можно по роли и тексту
+        // $$("button").findBy(text("Consent")).click();
+        return this;
+    }
 }

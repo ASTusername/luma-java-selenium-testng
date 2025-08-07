@@ -9,16 +9,21 @@ import org.junit.jupiter.api.Test;
 import pages.RegisterPage;
 import runner.BaseTest;
 
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selenide.$x;
+
 @Tag("registration")
 public class RegistrationTestLuma extends BaseTest {
     RegisterPage registerPage = new RegisterPage();
     TestData testData = new TestData();
+
     @Test
     @Owner("Denis Nikitin | tg: @nikk113")
     @Severity(SeverityLevel.NORMAL)
     public void successfulRegistrationTest() {
         registerPage.openPage()
                 .setFirstName(testData.firstName)
+                .acceptCookies()
                 .setLastName(testData.lastName)
                 .setEmail(testData.email)
                 .setPassword(testData.password)

@@ -34,5 +34,7 @@ public abstract class BaseTest {
     void addAttachments() {
         Attach.screenshotAs("Last Screen");
         Attach.pageSource();
+        Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 }
