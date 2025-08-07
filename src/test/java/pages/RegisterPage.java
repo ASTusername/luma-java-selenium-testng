@@ -1,5 +1,7 @@
 package pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import static com.codeborne.selenide.Selenide.*;
 
@@ -12,9 +14,11 @@ public class RegisterPage {
     private SelenideElement passwordInput = $("#password");
     private SelenideElement confirmPasswordInput = $("#password-confirmation");
     private SelenideElement submitButton = $("button.action.submit.primary");
+    private SelenideElement successMessage = $(".message-success");
+    private ElementsCollection validationErrors = $$(".mage-error");
 
     public RegisterPage openPage() {
-        open("https://magento.softwaretestingboard.com/customer/account/create/");
+        open("customer/account/create/");
         return this;
     }
 
@@ -46,4 +50,13 @@ public class RegisterPage {
     public void submit() {
         submitButton.click();
     }
+    public void shouldSeeSuccessMessage(String expectedText) {
+        successMessage.shouldHave(Condition.text(expectedText));
+    }
+
+    public void shouldSeeValidationError(String expectedText) {
+        validationErrors.findBy(Condition.text(expectedText))
+                .shouldBe(Condition.visible);
+    }
+
 }
