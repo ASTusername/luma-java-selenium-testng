@@ -21,6 +21,7 @@ public class RegisterPage {
 
     public RegisterPage openPage() {
         open("customer/account/create/");
+        acceptCookies();
         return this;
     }
 
